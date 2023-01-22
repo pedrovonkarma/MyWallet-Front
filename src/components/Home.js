@@ -1,14 +1,23 @@
 import styled from "styled-components"
 import {RiLogoutBoxRLine} from 'react-icons/ri'
 import {AiOutlinePlusCircle, AiOutlineMinusCircle} from 'react-icons/ai'
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AppContext from "../AppContext/Context"
 import { useNavigate } from "react-router-dom"
+import Entries from "./Entries";
+import NoEntries from "./NoEntries";
+import { useEffect } from "react";
+import axios from "axios";
 export default function Home(){
     const {name} = useContext(AppContext)
     const {setName} = useContext(AppContext)
     const {setTok} = useContext(AppContext)
+    const {config} = useContext(AppContext)
+    const {rV} = useContext(AppContext)
     const navigate = useNavigate();
+    const [areEntries, setAreEntries] = useState(false)
+    const [mov, setMov] = useState([])
+    
     function exit(){
         if(!window.confirm('Tem certeza que deseja sair?')){
             return
@@ -17,13 +26,33 @@ export default function Home(){
         setName('')
         navigate('/')
     }
+    function fail(e){
+        if(e.responde.data.message==='deslogado'){
+            alert('Por favor, faça login novamente.')
+            navigate('/')
+        } else{
+            alert(e.response.data.message)
+        }
+        
+    }
+    function success(e){
+        setMov(e.data)
+        if(e.data.length!==0){
+            setAreEntries(true)
+        }
+      }
+    useEffect(() => {
+        const promise = axios.get(`${process.env.REACT_APP_API_URL}/entries`, config)
+        promise.then(success)
+        promise.catch(fail)
+      }, [rV])
     return(
-        <Box>
+        <Box en={areEntries}>
             <header>
             <p>Olá, {name}</p> <RiLogoutBoxRLine onClick={exit} color='white' font-size='25px'/>
             </header>
             <section>
-        <h1>Não há registros de <br/>entrada ou saída</h1>
+                {areEntries ? <Entries mov={mov}/> : <NoEntries/>}
             </section>
             <footer>
                 <div onClick={() => navigate('/nova-entrada')}><AiOutlinePlusCircle color='white' font-size='20px'/><p>Nova<br/>entrada</p></div>
@@ -60,7 +89,7 @@ background-color: #FFFFFF;
 border-radius: 5px;
 display:flex;
 flex-direction: column;
-justify-content: space-around;
+justify-content:  ${props => props.en ? 'space-between' : 'space-around'};
 h1{
     font-family: 'Raleway';
 font-style: normal;

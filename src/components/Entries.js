@@ -1,16 +1,16 @@
 import styled from "styled-components"
 export default function Entries(props){
     const mov = props.mov
-    const prices = mov.map((i) => i.price)
+    const prices = mov.map((i) => Number(i.price))
     const sum = prices.reduce((partialSum, a) => partialSum + a, 0)
     return(<>
         <Itens>
-            {mov.map((i) => <Iten key={i.desc} cor={i.price>=0}><div><h2>{i.date}</h2><h3>{i.desc}</h3></div><h4>{i.price}</h4></Iten>)}
+            {mov.map((i) => <Iten key={i.desc} cor={i.price>=0}><div><h2>{i.date}</h2><h3>{i.desc}</h3></div><h4>{Number(i.price).toFixed(2)}</h4></Iten>)}
             
             
         </Itens>
         <Sald cor={sum>=0}>
-            <h5>SALDO</h5><h4>{sum}</h4>
+            <h5>SALDO</h5><h4>{sum.toFixed(2)}</h4>
         </Sald></>
     )
 }

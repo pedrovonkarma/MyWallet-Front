@@ -21,15 +21,16 @@ export default function Out(){
     }
     function fail(e){
         setLoading(false)
-        if(e.responde.data.message==='deslogado'){
+        if(e.response.data==='deslogado'){
             alert('Por favor, faça login novamente.')
             navigate('/')
         } else{
-            alert(e.response.data.message)
+            alert(e.response.data)
         }
         
     }
-    function send(){
+    function send(e){
+        e.preventDefault()
         setLoading(true)
         let aux = 0
         if(valor<0){
@@ -41,7 +42,7 @@ export default function Out(){
             valor: aux,
             description: desc
         }
-        const promise = axios.post(`${process.env.REACT_APP_API_URL}/entries`, obj, config)
+        const promise = axios.post(`${process.env.REACT_APP_API_URL}entries`, obj, config)
         promise.then(succes)
         promise.catch(fail)
     }

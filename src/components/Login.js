@@ -14,8 +14,9 @@ export default function Login() {
     const {setTok} = useContext(AppContext)
     const {setName} = useContext(AppContext)
     function re(a){
-        alert(a)
         setLoading(false)
+        alert(a.message)
+        
     }
     function success(e){
         setTok(e.data.token)
@@ -29,9 +30,9 @@ export default function Login() {
             email: email,
             password: pass
         }
-        const promise = axios.post(`${process.env.REACT_APP_API_URL}/login`, obj)
+        const promise = axios.post(`${process.env.REACT_APP_API_URL}login`, obj)
         promise.then((e) => success(e))
-        promise.catch((e) => re(e.response.data.details))
+        promise.catch(re)
     }
     return (
         <Box>

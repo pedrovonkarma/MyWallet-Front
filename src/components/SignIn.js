@@ -12,8 +12,9 @@ export default function SignIn() {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     function re(a){
-        alert(a)
+
         setLoading(false)
+        alert(a.response.data.details)
     }
     function checkLogin(e){
         e.preventDefault()
@@ -27,9 +28,9 @@ export default function SignIn() {
             email: email,
             password: pass
         }
-        const promise = axios.post(`${process.env.REACT_APP_API_URL}/signin`, obj)
+        const promise = axios.post(`http://${process.env.REACT_APP_API_URL}signin`, obj)
         promise.then(() => navigate('/'))
-        promise.catch((e) => re(e.response.data.details))
+        promise.catch(re)
     }
     return (
         <Box>

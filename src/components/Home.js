@@ -27,11 +27,11 @@ export default function Home(){
         navigate('/')
     }
     function fail(e){
-        if(e.responde.data.message==='deslogado'){
+        if(e.response.data==='deslogado'){
             alert('Por favor, faça login novamente.')
             navigate('/')
         } else{
-            alert(e.response.data.message)
+            alert(e.message)
         }
         
     }
@@ -42,7 +42,7 @@ export default function Home(){
         }
       }
     useEffect(() => {
-        const promise = axios.get(`${process.env.REACT_APP_API_URL}/entries`, config)
+        const promise = axios.get(`${process.env.REACT_APP_API_URL}entries`, config)
         promise.then(success)
         promise.catch(fail)
       }, [rV])

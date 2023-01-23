@@ -28,7 +28,7 @@ export default function SignIn() {
             email: email,
             password: pass
         }
-        const promise = axios.post(`http://${process.env.REACT_APP_API_URL}signin`, obj)
+        const promise = axios.post(`${process.env.REACT_APP_API_URL}signin`, obj)
         promise.then(() => navigate('/'))
         promise.catch(re)
     }

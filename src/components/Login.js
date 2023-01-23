@@ -38,9 +38,9 @@ export default function Login() {
         <Box>
             <h1>MyWallet</h1>
             <form onSubmit={checkLogin}>
-                <input required disabled={loading} value={email} onChange={(e) => setEmail(e.target.value)} type='email' placeholder="E-mail" />
-                <input required disabled={loading} value={pass} onChange={(e) => setPass(e.target.value)} type='password' placeholder="Senha" />
-                <button disabled={loading}>{loading ? <ThreeDots height='20px' color='#ffffff'/> : 'Entrar'}</button>
+                <input data-test="email" required disabled={loading} value={email} onChange={(e) => setEmail(e.target.value)} type='email' placeholder="E-mail" />
+                <input data-test="password" required disabled={loading} value={pass} onChange={(e) => setPass(e.target.value)} type='password' placeholder="Senha" />
+                <button data-test="sign-in-submit" disabled={loading}>{loading ? <ThreeDots height='20px' color='#ffffff'/> : 'Entrar'}</button>
             </form>
             <Link to='/cadastro'>Primeira vez? Cadastre-se!</Link>
         </Box>

@@ -46,9 +46,9 @@ export default function Entry(){
                 <p>Nova entrada</p>
             </header>
             <form onSubmit={send}>
-            <input required disabled={loading} value={valor} onChange={(e) => setValor(e.target.value)} type='number' placeholder="Valor" />
-                <input required disabled={loading} value={desc} onChange={(e) => setDesc(e.target.value)} type='text' placeholder="Descrição" />
-                <button disabled={loading}>{loading ? <ThreeDots height='20px' color='#ffffff'/> : 'Salvar entrada'}</button>
+            <input data-test="registry-amount-input" required disabled={loading} value={valor} onChange={(e) => setValor(e.target.value)} type='number' placeholder="Valor" />
+                <input data-test="registry-name-input" required disabled={loading} value={desc} onChange={(e) => setDesc(e.target.value)} type='text' placeholder="Descrição" />
+                <button data-test="registry-save" disabled={loading}>{loading ? <ThreeDots height='20px' color='#ffffff'/> : 'Salvar entrada'}</button>
                 
             </form>
         </Styl>

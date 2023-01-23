@@ -36,11 +36,11 @@ export default function SignIn() {
         <Box>
             <h1>MyWallet</h1>
             <form onSubmit={checkLogin}>
-                <input required disabled={loading} value={nome} onChange={(e) => setNome(e.target.value)} type='text' placeholder="Nome" />
-                <input required disabled={loading} value={email} onChange={(e) => setEmail(e.target.value)} type='email' placeholder="E-mail" />
-                <input required disabled={loading} value={pass} onChange={(e) => setPass(e.target.value)} type='password' placeholder="Senha" />
-                <input required disabled={loading} value={pass2} onChange={(e) => setPass2(e.target.value)} type='password' placeholder="Confirme a senha" />
-                <button disabled={loading}>{loading ? <ThreeDots height='20px' color='#ffffff'/> : 'Cadastrar'}</button>
+                <input data-test="name" required disabled={loading} value={nome} onChange={(e) => setNome(e.target.value)} type='text' placeholder="Nome" />
+                <input data-test="email" required disabled={loading} value={email} onChange={(e) => setEmail(e.target.value)} type='email' placeholder="E-mail" />
+                <input data-test="password" required disabled={loading} value={pass} onChange={(e) => setPass(e.target.value)} type='password' placeholder="Senha" />
+                <input data-test="conf-password" required disabled={loading} value={pass2} onChange={(e) => setPass2(e.target.value)} type='password' placeholder="Confirme a senha" />
+                <button data-test="sign-up-submit" disabled={loading}>{loading ? <ThreeDots height='20px' color='#ffffff'/> : 'Cadastrar'}</button>
             </form>
             <Link to='/'>Já tem uma conta? Entre agora!</Link>
         </Box>

@@ -49,14 +49,14 @@ export default function Home(){
     return(
         <Box en={areEntries}>
             <header>
-            <p>Olá, {name}</p> <RiLogoutBoxRLine onClick={exit} color='white' font-size='25px'/>
+            <p data-test="user-name">Olá, {name}</p> <RiLogoutBoxRLine data-test="logout" onClick={exit} color='white' font-size='25px'/>
             </header>
             <section>
                 {areEntries ? <Entries mov={mov}/> : <NoEntries/>}
             </section>
             <footer>
-                <div onClick={() => navigate('/nova-entrada')}><AiOutlinePlusCircle color='white' font-size='20px'/><p>Nova<br/>entrada</p></div>
-                <div onClick={() => navigate('/nova-saida')}><AiOutlineMinusCircle color='white' font-size='20px'/><p>Nova<br/>saída</p></div>
+                <div data-test="new-income" onClick={() => navigate('/nova-entrada')}><AiOutlinePlusCircle color='white' font-size='20px'/><p>Nova<br/>entrada</p></div>
+                <div data-test="new-expense" onClick={() => navigate('/nova-saida')}><AiOutlineMinusCircle color='white' font-size='20px'/><p>Nova<br/>saída</p></div>
             </footer>
         </Box>
     )
